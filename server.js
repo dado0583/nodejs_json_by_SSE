@@ -1,14 +1,14 @@
 var express = require('express');
 var app = express();
-
-var template = ' \
-<!DOCTYPE html> <html> <body> \
-	<script type="text/javascript"> \
-		    var source = new EventSource("/events/"); \
-		    source.onmessage = function(e) { \
-		        document.body.innerHTML = "<PRE>"+ e.data + "</PRE><br>"; \
-		    }; \
-</script> </body> </html>';
+var os = require('os');
+var template = ' '+os.EOL +
+'<!DOCTYPE html> <html> <body> '+os.EOL +
+'	<script type="text/javascript"> '+os.EOL +
+'		    var source = new EventSource("/events/"); '+os.EOL +
+'		    source.onmessage = function(e) { '+os.EOL +
+'		        document.body.innerHTML = "<PRE>"+ e.data + "</PRE><br>"; '+os.EOL +
+'		    }; '+os.EOL +
+'</script> </body> </html>';
 
 app.get('/', function(req, res) {
 	res.send(template);  // <- Return the static template above
@@ -47,4 +47,4 @@ setInterval(function(){
 	};
 }, 10);
 
-app.listen(process.env.PORT || 8080);
+app.listen(process.env.PORT || 8001);
